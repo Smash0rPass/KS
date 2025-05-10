@@ -8,6 +8,11 @@ app.use(express.json());
 // Load keys from environment variable
 const validKeys = JSON.parse(process.env.VALID_KEYS || '{}');
 
+// Add a simple route for the root path
+app.get('/', (req, res) => {
+    res.send('Key verification server is running. Use POST /verify-key to verify keys.');
+});
+
 // Endpoint to verify keys
 app.post('/verify-key', (req, res) => {
     const { key } = req.body;
